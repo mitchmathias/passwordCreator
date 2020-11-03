@@ -55,51 +55,60 @@ function generatePassword() {
     alert('the password must be less than 128 characters');
     return
   }
+  if (!length) {
+    alert('Please enter a number')
+    return
+  }
   var confirmRandomUpper = confirm('Do you want to include Uppercase letters? Ok is yes, Cancel is no');
   var confirmRandomLower = confirm('Do you want to include Lowercase letters? Ok is yes, Cancel is no');
   var confirmRandomNumber = confirm('Do you want to include Numbers? Ok is yes, Cancel is no');
   var confirmRandomSymbol = confirm('Do you want to include Symbols? Ok is yes, Cancel is no');
 
-  if (!confirmRandomUpper && !confirmRandomLower && !confirmRandomNumber && !confirmRandomSymbol){
+  if (!confirmRandomUpper && !confirmRandomLower && !confirmRandomNumber && !confirmRandomSymbol) {
     alert('Please choose at least one option')
-    return('Please try again')
-  }
-  // set password
- var i=0
- while (password.length < length){
-   // 0 = randomUpper
-   // 1 = randomLower
-   // 2 = randomNumber
-   // 3 = randomSymbol
-  var selector = i % 4; 
-  
-  if (selector == 0 && confirmRandomUpper) {
-    var randomUpper = getRandomUpper();
-    password = password + randomUpper;
+    return ('Please try again')
   }
 
-  if (selector == 1 && confirmRandomLower) {
-    var randomLower = getRandomLower();
-    password = password + randomLower;
-  }
+  // 0 = randomUpper
+  // 1 = randomLower
+  // 2 = randomNumber
+  // 3 = randomSymbol
+  var passLength = 0
 
-  if (selector == 2 && confirmRandomNumber) {
-    var randomNumber = getRandomNumber();
-    password = password + randomNumber;
-  }
+  while (password.length < length) {
 
-  if (selector == 3 && confirmRandomSymbol) {
-    var randomSymbol = getRandomSymbol();
-    password = password + randomSymbol;
+    if (passLength == 0 && confirmRandomUpper) {
+      var randomUpper = getRandomUpper();
+      password = password + randomUpper;
+    }
+
+    if (passLength == 1 && confirmRandomLower) {
+      var randomLower = getRandomLower();
+      password = password + randomLower;
+    }
+
+    if (passLength == 2 && confirmRandomNumber) {
+      var randomNumber = getRandomNumber();
+      password = password + randomNumber;
+    }
+
+    if (passLength == 3 && confirmRandomSymbol) {
+      var randomSymbol = getRandomSymbol();
+      password = password + randomSymbol;
+    }
+
+    // if passLength is 3, reset to 0. otherwise increase by 1
+    if (passLength == 3) {
+      passLength = 0;
+    }
+    else {
+      passLength++;
+    }
+
   }
-  i++;
- }
- return (password)
+  return (password)
 
 }
-
-
-
 
 
 // Add event listener to generate button
