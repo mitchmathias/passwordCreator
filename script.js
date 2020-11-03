@@ -37,7 +37,9 @@ function getRandomSymbol() {
 function writePassword(h) {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
+  while (password == "RETRY"){
+    password = generatePassword()
+  }
   passwordText.value = password;
 
 }
@@ -49,15 +51,15 @@ function generatePassword() {
   // maintains criteria for password lenght
   if (length < 8) {
     alert('The password must be at least 8 characters');
-    return;
+    return('RETRY');
   }
   if (length > 128) {
     alert('the password must be less than 128 characters');
-    return
+    return('RETRY')
   }
   if (!length) {
     alert('Please enter a number')
-    return
+    return('RETRY')
   }
   var confirmRandomUpper = confirm('Do you want to include Uppercase letters? Ok is yes, Cancel is no');
   var confirmRandomLower = confirm('Do you want to include Lowercase letters? Ok is yes, Cancel is no');
@@ -66,7 +68,7 @@ function generatePassword() {
 
   if (!confirmRandomUpper && !confirmRandomLower && !confirmRandomNumber && !confirmRandomSymbol) {
     alert('Please choose at least one option')
-    return ('Please try again')
+    return ('RETRY')
   }
 
   // 0 = randomUpper
