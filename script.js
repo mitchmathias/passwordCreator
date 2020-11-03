@@ -26,15 +26,8 @@ function getRandomSymbol() {
 }
 
 
-
-
-// Prompts
-// Below are the prompts the user can choose to create a password
-
-
-
 // Write password to the #password input
-function writePassword(h) {
+function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
   while (password == "RETRY"){
@@ -61,6 +54,7 @@ function generatePassword() {
     alert('Please enter a number')
     return('RETRY')
   }
+  // these allow you to choose what characters will be in your password
   var confirmRandomUpper = confirm('Do you want to include Uppercase letters? Ok is yes, Cancel is no');
   var confirmRandomLower = confirm('Do you want to include Lowercase letters? Ok is yes, Cancel is no');
   var confirmRandomNumber = confirm('Do you want to include Numbers? Ok is yes, Cancel is no');
@@ -108,6 +102,7 @@ function generatePassword() {
     }
 
   }
+  // enters password into textbox 
   return (password)
 
 }
